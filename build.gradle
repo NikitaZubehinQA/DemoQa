@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+}
+
+group = 'github'
+version = '1.0-SNAPSHOT'
+
+sourceCompatibility = '21'
+targetCompatibility = '21'
+
+repositories {
+    mavenCentral()
+    maven { url "https://oss.sonatype.org/content/repositories/releases/" }
+}
+
+dependencies {
+    // Selenium (существующая версия в Maven Central)
+    testImplementation 'org.seleniumhq.selenium:selenium-java:4.38.0'
+
+    // Selenide
+    testImplementation 'com.codeborne:selenide:7.12.0'
+
+    // WebDriverManager (существующая версия в Maven Central)
+    testImplementation 'io.github.bonigarcia:webdrivermanager:6.3.2'
+
+    // JUnit 5
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+
+    // Логирование (простая реализация SLF4J)
+    testImplementation 'org.slf4j:slf4j-simple:2.0.9'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+}
+
+compileTestJava {
+    options.encoding = 'UTF-8'
+}
