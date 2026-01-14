@@ -28,6 +28,8 @@ dependencies {
 
     // Логирование (простая реализация SLF4J)
     testImplementation 'org.slf4j:slf4j-simple:2.0.9'
+    //
+    testImplementation 'net.datafaker:datafaker:2.1.0'
 }
 
 test {

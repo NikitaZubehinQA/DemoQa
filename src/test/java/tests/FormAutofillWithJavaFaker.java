@@ -1,21 +1,15 @@
+package tests;
+
+import net.datafaker.Faker;
+import org.junit.jupiter.api.Test;
+import org.openqa.selenium.WebDriver;
+
+
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Configuration.*;
-
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Configuration.*;
-import com.codeborne.selenide.Selenide;
-
 import static com.codeborne.selenide.Selenide.*;
-import com.codeborne.selenide.SelenideElement;
 
-import com.codeborne.selenide.conditions.Value;
-import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
-public class FormAutofill {
+public class FormAutofillWithJavaFaker {
     WebDriver driver;
 
 
@@ -25,17 +19,28 @@ public class FormAutofill {
 
         browser = "chrome";
         holdBrowserOpen = true;
+        timeout = 10000;
+        pageLoadTimeout = 60000;
+        pageLoadStrategy = "eager";
         var element = $("#submit");
 
+        Faker faker = new Faker();
+
+        String firstName = faker.name().firstName();
+        String lastName = faker.name().lastName();
+        String userEmail = faker.internet().emailAddress();
+
+
+
         open("https://demoqa.com/automation-practice-form");
-        $("#firstName").setValue("Lamar");
-        $("#lastName").setValue("Johnson");
-        $("#userEmail").setValue("MakTrakher77@google.com");
+        $("#firstName").setValue(firstName);
+        $("#lastName").setValue(lastName);
+        $("#userEmail").setValue(userEmail);
         $("label[for='gender-radio-1']").click();
         // Сначала вводим значение
-        $("#userNumber").setValue("5664678902");
+        $("#userNumber").setValue("123456789");
         // Потом проверяем
-        $("#userNumber").shouldHave(value("5664678902"));
+        $("#userNumber").shouldHave(value("123456789"));
         //плейсхолдер календаря (год)
         $("#dateOfBirthInput").click();
         $(".react-datepicker__input-container").click();
