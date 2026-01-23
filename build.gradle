@@ -3,24 +3,28 @@ plugins {
     id 'io.qameta.allure' version '2.10.0'
 }
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+group = 'github'
+version = '1.0-SNAPSHOT'
+
 allure {
     report {
         version.set("2.19.0")
     }
-    adapter { // отвечает за появление папочки build/allure-results
-        aspectjWeaver.set(true) //обработка аннотации @Step
+    adapter {
+        aspectjWeaver.set(true)
         frameworks {
-            junit5 { //название фреймворка
-                adapterVersion.set("2.19.0") //версия интеграции фреймворка и Allure
+            junit5 {
+                adapterVersion.set("2.19.0")
             }
         }
     }
 }
-group = 'github'
-version = '1.0-SNAPSHOT'
-
-sourceCompatibility = '21'
-targetCompatibility = '21'
 
 repositories {
     mavenCentral()
@@ -28,34 +32,16 @@ repositories {
 }
 
 dependencies {
-    // Selenium (существующая версия в Maven Central)
     testImplementation 'org.seleniumhq.selenium:selenium-java:4.38.0'
-
-    // Selenide
     testImplementation 'com.codeborne:selenide:7.12.0'
-
-    // WebDriverManager (существующая версия в Maven Central)
     testImplementation 'io.github.bonigarcia:webdrivermanager:6.3.2'
-
-    // JUnit 5
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
-
-    // Логирование (простая реализация SLF4J)
     testImplementation 'org.slf4j:slf4j-simple:2.0.9'
-    //
     testImplementation 'net.datafaker:datafaker:2.1.0'
 }
 
 test {
     useJUnitPlatform()
-}
-
-compileJava {
-    options.encoding = 'UTF-8'
-}
-
-compileTestJava {
-    options.encoding = 'UTF-8'
 }
 
 tasks.register('simple_test', Test) {
