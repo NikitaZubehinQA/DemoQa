@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'io.qameta.allure' version '2.10.0'
+    id 'io.qameta.allure' version '2.11.2'
 }
 
 java {
@@ -13,22 +13,12 @@ group = 'github'
 version = '1.0-SNAPSHOT'
 
 allure {
-    report {
-        version.set("2.19.0")
-    }
-    adapter {
-        aspectjWeaver.set(true)
-        frameworks {
-            junit5 {
-                adapterVersion.set("2.19.0")
-            }
-        }
-    }
+    version = '2.19.0' // версия CLI, для генерации отчета
+    autoconfigure = true // автоматически подключает Allure к тестам
 }
 
 repositories {
     mavenCentral()
-    maven { url "https://oss.sonatype.org/content/repositories/releases/" }
 }
 
 dependencies {

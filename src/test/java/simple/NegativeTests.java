@@ -1,9 +1,15 @@
-package simple;
+import io.qameta.allure.junit5.AllureJunit5;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+@ExtendWith(AllureJunit5.class)
+public class NegativeTests { ... }
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Tag("simple")
 public class NegativeTests {
